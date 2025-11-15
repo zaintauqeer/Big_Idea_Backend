@@ -1,0 +1,1159 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My Backend API",
+    "description": "API Documentation for BigIdea",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+    "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter your JWT token like: Bearer <your_token>"
+    }
+  },
+  "security": [{ "bearerAuth": [] }],
+  
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Register a new user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login a user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/logo/upload": {
+           "post": {
+            "tags": ["Logo"],
+            "summary": "Upload a logo image",
+      "description": "Upload a logo image",
+      "parameters": [
+        {
+          "in": "formData",
+          "name": "logo",
+          "type": "file",
+          "required": true,
+          "description": "Logo image file to upload"
+        }
+      ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/logo/get": {
+      "get": {
+        "tags": ["Logo"],
+        "summary": "Get the current logo",
+        "description": "Get the current logo",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/logo/update": {
+      "put": {
+        "tags": ["Logo"],
+        "summary": "Update the stored logo with a new image",
+    "description": "Updates the stored logo with a new image",
+    "parameters": [
+      {
+        "in": "formData",
+        "name": "logo",
+        "type": "file",
+        "required": false,
+        "description": "New logo image upload"
+      }
+    
+    ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/logo/delete": {
+       "delete": {
+        "tags": ["Logo"],
+    "description": "Deletes the existing logo from the system",
+    "responses": {
+      "200": { "description": "Logo deleted successfully" },
+      "400": { "description": "Bad request – missing or invalid ID" },
+      "404": { "description": "Logo not found" },
+      "500": { "description": "Server error" }
+    }
+  }
+    },
+    "/api/video/upload": {
+      "post": {
+         "tags": ["Video"],
+         "summary": "Upload a video file",
+         "description": "Upload a video file",
+      "parameters": [
+        {
+          "in": "formData",
+          "name": "video",
+          "type": "file",
+          "required": true,
+          "description": "Video file to upload"
+        }
+      ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/video/get": {
+      "get": {
+        "tags": ["Video"],
+        "summary": "Get the uploaded video",
+        "description": "Get the uploaded video",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/video/update": {
+       "put": {
+        "tags": ["Video"],
+        "summary": "Update the uploaded video",
+        "description": "Update an existing video",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "video",
+            "type": "file",
+            "required": false,
+            "description": "New video file to upload"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/video/delete": {
+       "delete": {
+        "tags": ["Video"],
+    "description": "Deletes the existing video from the system",
+    "responses": {
+      "200": { "description": "Video deleted successfully" },
+      "400": { "description": "Bad request – missing or invalid ID" },
+      "404": { "description": "Video not found" },
+      "500": { "description": "Server error" }
+    }
+  }
+    },
+    "/api/visual/create": {
+      "post": {
+        "tags": ["Visual"],
+        "summary": "Create visual section",
+        "description": "Create visual section",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/visual/get": {
+      "get": {
+        "tags": ["Visual"],
+        "summary": "Get the visual section",
+        "description": "Get the visual section",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/visual/update": {
+      "put": {
+        "tags": ["Visual"],
+        "summary": "Update the visual section",
+        "description": "Update an existing visual section",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/visual/delete": {
+      "delete": {
+        "tags": ["Visual"],
+        "summary": "Delete the visual section",
+        "description": "Delete the visual section",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/about/create": {
+      "post": {
+        "tags": ["About"],
+        "summary": "Create about section",
+        "description": "Create about section",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/about/get": {
+      "get": {
+        "tags": ["About"],
+        "summary": "Get the about section",
+        "description": "Get the about section",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/about/update": {
+      "put": {
+        "tags": ["About"],
+        "summary": "Update the about section",
+        "description": "Update an existing about section",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/about/delete": {
+      "delete": {
+        "tags": ["About"],
+        "summary": "Delete the about section",
+        "description": "Delete the about section",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/service/create": {
+      "post": {
+        "tags": ["Service"],
+        "summary": "Create a new service",
+        "description": "Create a new service",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/service/get": {
+      "get": {
+        "tags": ["Service"],
+        "summary": "Get the list of services",
+        "description": "Get the list of services",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/service/update/{id}": {
+      "put": {
+        "tags": ["Service"],
+        "summary": "Update an existing service",
+        "description": "Update an existing service",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/service/delete/{id}": {
+      "delete": {
+        "tags": ["Service"],
+        "summary": "Delete a service",
+        "description": "Delete a service",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/portfolio/create": {
+  "post": {
+    "tags": ["Portfolio"],
+    "summary": "Create new portfolio",
+    "description": "Creates a new portfolio entry with thumbnail + multiple showroom images",
+    "parameters": [
+      {
+        "in": "formData",
+        "name": "title",
+        "type": "string",
+        "required": true
+      },
+      {
+        "in": "formData",
+        "name": "titleColor",
+        "type": "string",
+        "required": true
+      },
+      {
+        "in": "formData",
+        "name": "detail",
+        "type": "string",
+        "required": true
+      },
+      {
+        "in": "formData",
+        "name": "isActive",
+        "type": "boolean",
+        "required": true
+      },
+      {
+        "in": "formData",
+        "name": "thumbnail",
+        "type": "file",
+        "required": true,
+        "description": "Thumbnail image (max 2MB)"
+      },
+      {
+        "in": "formData",
+        "name": "showRoom",
+        "type": "array",
+        "items": { "type": "file" },
+        "required": true,
+        "collectionFormat": "multi",
+        "description": "Multiple showroom images (each max 2MB)"
+      }
+    ],
+    "responses": {
+      "201": { "description": "Portfolio created successfully" },
+      "400": { "description": "Validation error" },
+      "500": { "description": "Server error" }
+    }
+  }
+},
+"/api/portfolio/get": {
+  "get": {
+    "tags": ["Portfolio"],
+    "summary": "Get all portfolio items",
+    "responses": {
+      "200": { "description": "Success" },
+      "500": { "description": "Server error" }
+    }
+  }
+},
+
+"/api/portfolio/get/active": {
+  "get": {
+    "tags": ["Portfolio"],
+    "summary": "Get all active portfolios",
+    "responses": {
+      "200": { "description": "Success" },
+      "500": { "description": "Server error" }
+    }
+  }
+},
+"/api/portfolio/update/{id}": {
+  "put": {
+    "tags": ["Portfolio"],
+    "summary": "Update portfolio",
+    "description": "Updates portfolio details with optional new thumbnail and showroom images",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Portfolio ID"
+      },
+      {
+        "in": "formData",
+        "name": "title",
+        "type": "string",
+        "required": false
+      },
+      {
+        "in": "formData",
+        "name": "titleColor",
+        "type": "string",
+        "required": false
+      },
+      {
+        "in": "formData",
+        "name": "detail",
+        "type": "string",
+        "required": false
+      },
+      {
+        "in": "formData",
+        "name": "isActive",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "in": "formData",
+        "name": "thumbnail",
+        "type": "file",
+        "required": false,
+        "description": "New thumbnail image (max 2MB)"
+      },
+      {
+        "in": "formData",
+        "name": "showRoom",
+        "type": "array",
+        "items": { "type": "file" },
+        "required": false,
+        "collectionFormat": "multi",
+        "description": "Multiple showroom images (each max 2MB). Old showroom images will be replaced."
+      }
+    ],
+    "responses": {
+      "200": { "description": "Portfolio updated successfully" },
+      "400": { "description": "Validation error" },
+      "404": { "description": "Portfolio not found" },
+      "500": { "description": "Server error" }
+    }
+  }
+},
+"/api/portfolio/delete/{id}": {
+  "delete": {
+    "tags": ["Portfolio"],
+    "summary": "Delete portfolio",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Portfolio ID"
+      }
+    ],
+    "responses": {
+      "200": { "description": "Portfolio deleted successfully" },
+      "404": { "description": "Portfolio not found" },
+      "500": { "description": "Server error" }
+    }
+  }
+},
+    "/api/client/upload": {
+     "post": {  
+        "tags": ["Client"],
+        "summary": "Upload a new client logo",
+    "description": "Upload a new client logo",
+    "parameters": [
+      {
+        "name": "logo",
+        "in": "formData",
+        "description": "Client logo image",
+        "required": true,
+        "type": "file"
+      }
+    ],
+    "responses": {
+      "201": {
+        "description": "Client logo uploaded successfully"
+      },
+      "400": {
+        "description": "Bad Request"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+    },
+    "/api/client/get": {
+      "get": {
+        "tags": ["Client"],
+        "summary": "Get the list of client logos",
+        "description": "Get the list of client logos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/client/update/{id}": {
+     "put": {
+    "tags": ["Client"],
+    "summary": "Update an existing client (can include new logo)",
+    "description": "Update an existing client (can include new logo)",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Client ID"
+      },
+      {
+        "name": "logo",
+        "in": "formData",
+        "type": "file",
+        "description": "new client logo"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Client updated successfully"
+      },
+      "404": {
+        "description": "Not Found"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+    },
+    "/api/client/delete/{id}": {
+       "delete": {
+    "tags": ["Client"],
+    "summary": "Delete a client by ID",
+    "description": "Delete a client by ID",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Client ID"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Client deleted successfully"
+      },
+      "404": {
+        "description": "Not Found"
+      },
+      "500": {
+        "description": "Internal Server Error"
+      }
+    }
+  }
+    },
+    "/api/contact/create": {
+      "post": {
+        "tags": ["Contact"],
+        "summary": "Create contact information",
+        "description": "Create contact information",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/contact/get": {
+      "get": {
+        "tags": ["Contact"],
+        "summary": "Get contact information",
+        "description": "Get contact information",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/contact/update": {
+      "put": {
+        "tags": ["Contact"],
+        "summary": "Update contact information",
+        "description": " Update contact information",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "phone": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/contact/delete": {
+      "delete": {
+        "tags": ["Contact"],
+        "summary": "Delete contact information",
+        "description": "Delete contact information",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/footerLogo/create": {
+       "post": {
+        "tags": ["FooterLogo"],
+    "summary": "Create a new footer logo",
+    "description": "Create a new footer logo",
+    "consumes": ["multipart/form-data"],
+    "parameters": [
+      {
+        "name": "logo",
+        "in": "formData",
+        "description": "Footer logo image file",
+        "required": true,
+        "type": "file"
+      },
+      {
+        "name": "name",
+        "in": "formData",
+        "type": "string",
+        "required": true,
+        "description": "Footer logo name"
+      },
+      {
+        "name": "link",
+        "in": "formData",
+        "type": "string",
+        "required": true,
+        "description": "Footer logo link"
+      }
+    ],
+    "responses": {
+      "201": { "description": "Created" },
+      "400": { "description": "Bad Request" },
+      "500": { "description": "Internal Server Error" }
+    }
+  }
+    },
+    "/api/footerLogo/get": {
+      "get": {
+        "tags": ["FooterLogo"],
+        "summary": "Get footer logos",
+        "description": "Get footer logos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/footerLogo/update/{id}": {
+       "put": {
+    "tags": ["FooterLogo"],
+    "summary": "Update an existing footer logo",
+    "description": "Update an existing footer logo",
+    "consumes": ["multipart/form-data"],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Footer logo ID"
+      },
+      {
+        "name": "logo",
+        "in": "formData",
+        "type": "file",
+        "description": "new logo image"
+      },
+      {
+        "name": "name",
+        "in": "formData",
+        "type": "string",
+        "description": "Updated footer logo name"
+      },
+      {
+        "name": "link",
+        "in": "formData",
+        "type": "string",
+        "description": "Updated footer logo link"
+      }
+    ],
+    "responses": {
+      "200": { "description": "OK" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  }
+    },
+    "/api/footerLogo/delete/{id}": {
+       "delete": {
+    "tags": ["FooterLogo"],
+    "summary": "Delete a footer logo by ID",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "type": "string",
+        "description": "Footer logo ID"
+      }
+    ],
+    "responses": {
+      "200": { "description": "OK" },
+      "404": { "description": "Not Found" },
+      "500": { "description": "Internal Server Error" }
+    }
+  }
+    },
+    "/api/footerText/create": {
+      "post": {
+        "tags": ["FooterText"],
+        "summary": "Create footer text",
+        "description": " Create footer text",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/footerText/get": {
+      "get": {
+        "tags": ["FooterText"],
+        "summary": "Get footer text",
+        "description": "Get footer text",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/footerText/update": {
+      "put": {
+        "tags": ["FooterText"],
+        "summary": "Update footer text",
+        "description": "Update footer text",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/footerText/delete": {
+      "delete": {
+        "tags": ["FooterText"],
+        "summary": "Delete footer text",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
