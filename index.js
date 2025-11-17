@@ -14,6 +14,7 @@ import contactRoutes from './src/routes/contactRoutes.js';
 import footerLogoRoutes from './src/routes/footerLogoRoutes.js';
 import footerTextRoutes from './src/routes/footerTextRoutes.js';
 import portfolioRoutes from './src/routes/portfolioRoutes.js';
+import statsRoutes from './src/routes/statsRoutes.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger-output.json' with { type: "json" };
 
@@ -43,6 +44,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/footerLogo", footerLogoRoutes);
 app.use("/api/footerText", footerTextRoutes);
 app.use("/api/portfolio", portfolioRoutes);
+app.use("/api/stats", statsRoutes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

@@ -5,10 +5,10 @@
     "description": "API Documentation for BigIdea",
     "version": "1.0.0"
   },
-  "host": "localhost:5000",
+  "host": "4czzzd52-5000.asse.devtunnels.ms",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
     "securityDefinitions": {
     "bearerAuth": {
@@ -98,9 +98,9 @@
       }
     },
     "/api/logo/upload": {
-           "post": {
-            "tags": ["Logo"],
-            "summary": "Upload a logo image",
+      "post": {
+      "tags": ["Logo"],
+      "summary": "Upload a logo image",
       "description": "Upload a logo image",
       "parameters": [
         {
@@ -1142,6 +1142,24 @@
       "delete": {
         "tags": ["FooterText"],
         "summary": "Delete footer text",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+     "/api/stats/counts": {
+      "get": {
+        "tags": ["Stats"],
+        "summary": "Get the Stats counts",
+        "description": "Get the current stats counts",
         "responses": {
           "200": {
             "description": "OK"
