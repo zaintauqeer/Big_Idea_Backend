@@ -619,6 +619,13 @@
       },
       {
         "in": "formData",
+        "name": "mainImage",
+        "type": "file",
+        "required": true,
+        "description": "Main image (max 2MB)"
+      },
+      {
+        "in": "formData",
         "name": "showRoom",
         "type": "array",
         "items": { "type": "file" },
@@ -698,6 +705,13 @@
         "type": "file",
         "required": false,
         "description": "New thumbnail image (max 2MB)"
+      },
+      {
+        "in": "formData",
+        "name": "mainImage",
+        "type": "file",
+        "required": false,
+        "description": "New main image (max 2MB)"
       },
       {
         "in": "formData",

@@ -22,6 +22,14 @@ const portfolioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    mainImageUrl: {
+      type: String,
+      required: true,
+    },
+    mainImagePublicId: {
+      type: String,
+      required: true,
+    },
     showRoom: [
       {
         _id: false,

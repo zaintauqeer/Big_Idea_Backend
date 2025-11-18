@@ -15,7 +15,7 @@ const footerLogoSchema = new mongoose.Schema({
   },
   link: {
     type: String, // optional: insta/twitter ka URL
-    required: false,
+    required: true,
   }
 }, { timestamps: true });
 
