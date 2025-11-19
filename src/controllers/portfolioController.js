@@ -120,6 +120,9 @@ export const updatePortfolio = async (req, res) => {
    try {
     const { id } = req.params;
     const { title, titleColor, detail, isActive } = req.body;
+    const deletedShowRoomImages = req.body.deletedShowRoomImages
+      ? JSON.parse(req.body.deletedShowRoomImages)
+      : [];
 
     let portfolio = await Portfolio.findById(id);
     if (!portfolio) {
@@ -176,7 +179,7 @@ export const updatePortfolio = async (req, res) => {
     if (mainImageFile) {
         if (portfolio.mainImagePublicId) {
             await cloudinary.uploader.destroy(portfolio.mainImagePublicId, { resource_type: "image" });
-      }
+      } 
     
       const mainImageResult = await new Promise((resolve, reject) => {
           const stream = cloudinary.uploader.upload_stream(
@@ -190,13 +193,16 @@ export const updatePortfolio = async (req, res) => {
         portfolio.mainImagePublicId = mainImageResult.public_id;
     }
 
-    if (showRoomFiles.length > 0 && portfolio.showRoom?.length > 0) {
-      for (const img of portfolio.showRoom) {
-        if (img.imagePublicId) {
-          await cloudinary.uploader.destroy(img.imagePublicId);
-        }
-      }
-    }
+   if (deletedShowRoomImages.length > 0) {
+     for (const publicId of deletedShowRoomImages) {
+       await cloudinary.uploader.destroy(publicId);
+
+       // Remove from portfolio array
+       portfolio.showRoom = portfolio.showRoom.filter(
+         (img) => img.imagePublicId !== publicId
+       );
+     }
+   }
 
 
     let newShowRoomImages = [];
@@ -216,7 +222,7 @@ export const updatePortfolio = async (req, res) => {
           imagePublicId: uploaded.public_id,
         });
       }
-      portfolio.showRoom = newShowRoomImages;
+      portfolio.showRoom = [...portfolio.showRoom, ...newShowRoomImages];
     }
     portfolio.title = title || portfolio.title;
     portfolio.titleColor = titleColor || portfolio.titleColor;
